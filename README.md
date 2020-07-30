@@ -1,7 +1,7 @@
 # 教学资源信息PC
 
 #### Structure
-
+```javascript
 ├─src
 |  ├─App.vue
 |  ├─main.js						
@@ -270,7 +270,6 @@
 |  |   ├─modules
 |  |   |    ├─baseModules.js
 |  |   |    └parameter.js
-
 |  ├─axios
 |  |   ├─common.js
 |  |   ├─Global.js						//
@@ -320,7 +319,7 @@
 |   |  ├─menus.json
 |   |  ├─prod.config.json
 |   |  └test.config.json
-
+```
 #### Usage
 
 1.  xxxx
