@@ -90,29 +90,11 @@
 |  |   |     ├─assetAllocation
 |  |   |     |        └资产调拨管理
 |  |   ├─system
-|  |   |   ├─api.js
-|  |   |   ├─depart.vue
-|  |   |   ├─loginManage.vue
-|  |   |   ├─logManage.vue
-|  |   |   ├─menu.vue
-|  |   |   ├─role.vue
-|  |   |   ├─router.js
 |  |   |   └user.vue
+		   └系统管理
 |  |   ├─standardExpenses
-|  |   |        ├─router.js
-|  |   |        ├─standard
-|  |   |        |    ├─api.js
-|  |   |        |    ├─router.js
-|  |   |        |    ├─Standard.vue
-|  |   |        |    └StandardDetail.vue
 |  |   ├─projectConstruct
-|  |   |        ├─api.js
-|  |   |        ├─router.js
-|  |   |        ├─construct
-|  |   |        |     ├─Construct.vue
-|  |   |        |     ├─ConstructDetail.vue
-|  |   |        |     ├─ConstructEditDetail.vue
-|  |   |        |     └router.js
+|  |   	   └项目建设
 |  |   ├─login
 |  |   |   ├─Login.vue
 |  |   |   └router.js
