@@ -183,7 +183,7 @@ export default {
           })
         }
         if (item.prop === 'chooseWay') {
-          this.baseList('JB02JCLX').then(res => {
+          this.baseList('JB02XYFS').then(res => {
             this.mxSelectWay = res
             this.mxSelectWay.unshift({ label: '所有', value: '' })
             item.options = this.mxSelectWay

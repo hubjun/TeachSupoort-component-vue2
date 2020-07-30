@@ -5,7 +5,7 @@ import store from './store'
 import ElementUI from 'element-ui'
 import 'element-ui/lib/theme-chalk/index.css'
 // import { autoFontSize } from './util'
-import { makePy, makeWb, infoMsg, successMsg, error, errorMsg, formatDate, limitInt, limitFloat, deleteFile, getCode, getAssetsRecordList, planlist, getDataType } from './axios/common.js'
+import { infoMsg, successMsg, error, errorMsg, formatDate, limitInt, limitFloat, deleteFile, getCode, getAssetsRecordList, planlist, getDataType } from './axios/common.js'
 
 Vue.config.productionTip = false
 
@@ -21,8 +21,6 @@ Vue.prototype.$errorMsg = errorMsg
 Vue.prototype.$limitFloat = limitFloat
 Vue.prototype.$limitInt = limitInt
 
-Vue.prototype.$makePy = makePy
-Vue.prototype.$makeWb = makeWb
 Vue.prototype.$formatDate = formatDate
 Vue.prototype.$deleteFile = deleteFile
 Vue.prototype.$getCode = getCode

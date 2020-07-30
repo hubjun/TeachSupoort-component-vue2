@@ -203,6 +203,7 @@ export const dictMixin = {
         //   value: 3
         // }
       ],
+      mxLevelType: [],
       mxPurchaseStatus: [
         {
           label: '正常采购',
@@ -445,12 +446,12 @@ export const dictMixin = {
         axios.post(`${BASE_URL}/book/book-basic-dictionary/v1/list`, opts).then(result => {
           if (result.status) {
             let arr = []
-            if (result.records && result.records.length > 0) {
-              result.records.forEach(e => {
+            if (result.data.records && result.data.records.length > 0) {
+              result.data.records.forEach(e => {
                 e.label = e.basicName
                 e.value = e.id
               })
-              arr = [...result.records]
+              arr = result.data.records
             }
             resolve(arr)
           } else {

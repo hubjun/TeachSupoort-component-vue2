@@ -26,16 +26,15 @@ export function addDictionary(opts) {
 /**
  * 修改字典
  */
-export function editDictionary(id, name) {
-    return axios.post(`${BASE_URL}/basic-dictionary/update?id=${id}&name=${name}`)
+export function editDictionary(opts) {
+    return axios.post(`${BASE_URL}/book/book-basic-dictionary/v1/update`, opts)
 }
 
 /**
  * 禁用/启用字典
  */
 export function disableDictionary(opts) {
-    const url = BASE_URL + '/book/book-basic-dictionary/v1/disable'
-    return axios.post(url + '?' + qs.stringify(opts))
+    return axios.post(`${BASE_URL}/book/book-basic-dictionary/v1/disable?disable=${opts.disable}&ids=${opts.ids}`)
 }
 
 /**
@@ -49,19 +48,17 @@ export function getCourseList(opts) {
  * 课程、禁用/启用字典
  */
 export function disableCourseDict(opts) {
-    const url = BASE_URL + '/book/book-course/v1/disable'
-    return axios.post(url + '?' + qs.stringify(opts))
+    return axios.post(`${BASE_URL}/book/book-course/v1/disable?disable=${opts.disable}&ids=${opts.ids}`)
 }
 /**
  * 课程详情
  */
-export function getCourseDetail(opts) {
-  const url = BASE_URL + '/book/book-course/v1/get'
-  return axios.post(url + '?' + qs.stringify(opts))
+export function getCourseDetail(id) {
+    return axios.get(`${BASE_URL}/book/book-course/v1/get`, { params: { id } })
 }
 /**
  * 新增课程
  */
 export function addCourse(opts) {
-  return axios.post(`${BASE_URL}/book/book-basic-dictionary/v1/create`, opts)
+    return axios.post(`${BASE_URL}/book/book-course/v1/createOrUpdate`, opts)
 }

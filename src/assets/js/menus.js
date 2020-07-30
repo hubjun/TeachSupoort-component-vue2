@@ -279,8 +279,8 @@ const menus = {
       ]
     }
   ],
-   // 标准经费管理
-   system: [
+  // 标准经费管理
+  system: [
     {
       id: 'system',
       label: '系统管理',
@@ -327,29 +327,29 @@ const menus = {
       icon: '&#xe646;',
       children: [
         {
-          id: '/teachingMaterial/basic-dict/asset-type',
+          id: '/teachingmaterial/basic-dict/asset-type',
           label: '选用方式',
-          path: '/teachingMaterial/basic-dict/asset-type'
-        },{
-          id: '/teachingMaterial/basic-dict/course-dict',
+          path: '/teachingmaterial/basic-dict/asset-type'
+        }, {
+          id: '/teachingmaterial/basic-dict/course-dict',
           label: '课程字典',
-          path: '/teachingMaterial/basic-dict/course-dict'
-        },{
-          id: '/teachingMaterial/basic-dict/unit-year',
+          path: '/teachingmaterial/basic-dict/course-dict'
+        }, {
+          id: '/teachingmaterial/basic-dict/unit-year',
           label: '学年',
-          path: '/teachingMaterial/basic-dict/unit-year'
-        },{
-          id: '/teachingMaterial/basic-dict/course-type',
+          path: '/teachingmaterial/basic-dict/unit-year'
+        }, {
+          id: '/teachingmaterial/basic-dict/course-type',
           label: '课程类型',
-          path: '/teachingMaterial/basic-dict/course-type'
-        },{
-          id: '/teachingMaterial/basic-dict/training-level',
+          path: '/teachingmaterial/basic-dict/course-type'
+        }, {
+          id: '/teachingmaterial/basic-dict/training-level',
           label: '培养层次',
-          path: '/teachingMaterial/basic-dict/training-level'
-        },{
-          id: '/teachingMaterial/basic-dict/teaching-type',
+          path: '/teachingmaterial/basic-dict/training-level'
+        }, {
+          id: '/teachingmaterial/basic-dict/teaching-type',
           label: '教材类型',
-          path: '/teachingMaterial/basic-dict/teaching-type'
+          path: '/teachingmaterial/basic-dict/teaching-type'
         }
       ]
     },

@@ -184,29 +184,34 @@
     },
     methods: {
       // 点击true禁用/false启用
-      disable(disable, id) {
-        let _ids = this.ids.push(id)
-        let params = {
-          ids: _ids,
-          disable: disable
-        }
-        disableCourseDict(params).then(res => {
-          this.$message.success('操作成功');
-          this.btnConfig[1].loading = false;
-          this.btnConfig[2].loading = false;
-          this.getList();
-        });
+      disable(disable, id, multi) {
+      this.ids = []
+      this.ids.push(id)
+      let params = {
+        ids: this.ids,
+        disable: disable
+      }
+      disableCourseDict(params).then(res => {
+        multi && disable && this.$success('批量停用')
+        multi && !disable && this.$success('批量启用')
+        !multi && disable && this.$success('停用')
+        !multi && !disable && this.$success('启用')
+        this.btnConfig[1].loading = false
+        this.btnConfig[2].loading = false
+        this.tableConfig.pageNum = 1
+        this.getList()
+      })
       },
       // 点击编辑
       editclick(id) {
         this.$router.push({ 
-          path: '/teachingMaterial/basic-dict/asset-type-detail', 
+           path: `${this.$route.path}-detail`,
           query: { type: 'edit', id: id } 
         })
       },
       // 双击表格某列
       dblclick(row, column, cell, event) {
-        this.$router.push({ path: '/teachingMaterial/basic-dict/asset-type-detail', 
+        this.$router.push({ path: `${this.$route.path}-detail`, 
           query: { type: 'edit', id: row.id } 
         })
       },
@@ -239,35 +244,45 @@
       },
       // 点击新增
       addData() {
-        this.$router.push({ path: '/teachingMaterial/basic-dict/asset-type-detail', 
+        this.$router.push({ path: `${this.$route.path}-detail`,
           query: { type: 'add' } 
         })
       },
       // 点击批量启用
       multiOpen() {
-        if(this.tableConfig.selectData.length === 0) {
-          this.$message.info('请勾选要操作的数据');
-          return;
-        }
-        let ids = [];
-        for(let i = 0; i < this.tableConfig.selectData.length; i++) {
-          ids.push(this.tableConfig.selectData[i].id);
-        }
-        this.btnConfig[1].loading = true;
-        this.disable(false, ids.join(','));
+        if (this.tableConfig.selectData.length === 0) {
+        this.$info('请勾选课程字典')
+        return false
+      }
+      let ids = []
+      this.tableConfig.selectData.forEach(e => {
+        if (e.disable) ids.push(e.id)
+      })
+      if (ids.length > 0) {
+        this.btnConfig[1].loading = true
+        this.disable(false, ids.join(','), 'multi')
+      }else {
+        this.$info('请勾选需要启用的课程字典')
+        return false
+      }
       },
       // 点击批量停用
       multiClose() {
-        if(this.tableConfig.selectData.length === 0) {
-          this.$message.info('请勾选要操作的数据');
-          return;
-        }
-        let ids = [];
-        for(let i = 0; i < this.tableConfig.selectData.length; i++) {
-          ids.push(this.tableConfig.selectData[i].id);
-        }
-        this.btnConfig[2].loading = true;
-        this.disable(true, ids.join(','));
+        if (this.tableConfig.selectData.length === 0) {
+        this.$info('请勾选课程字典')
+        return false
+      }
+      let ids = []
+      this.tableConfig.selectData.forEach(e => {
+        if (!e.disable) ids.push(e.id)
+      })
+      if (ids.length > 0) {
+        this.btnConfig[1].loading = true
+        this.disable(true, ids.join(','), 'multi')
+      }else {
+        this.$info('请勾选需要停用的课程字典')
+        return false
+      }
       },
       // 查询数据列表
       getList() {

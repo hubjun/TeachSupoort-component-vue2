@@ -1,6 +1,6 @@
 <template>
-<div id="AssetTypeDetail" ref="AssetTypeDetail" class="com-detail-wrap">
-  <div class="detail-item">
+  <div id="AssetTypeDetail" ref="AssetTypeDetail" class="com-detail-wrap">
+    <div class="detail-item">
       <div class="detail-head">
         <div class="tit">选用方式信息</div>
         <div class="btns">
@@ -9,156 +9,180 @@
         </div>
       </div>
       <div class="detail-content">
-        <form-list :disabled="disabled" :datas="formData" :form-config="formConfig" @handle-btn-click="handleBtnClick"></form-list>
+        <form-list
+          :disabled="disabled"
+          :datas="formData"
+          ref="formlist"
+          :form-config="formConfig"
+          @handle-btn-click="handleBtnClick"
+        ></form-list>
       </div>
     </div>
-</div>
+  </div>
 </template>
 
 <script>
-  import FormList from '@/components/form/FormList'
-  import { dictMixin } from '../../../mixins/dictMixin'
-  import { getDictionaryId, addDictionary } from './api'
-  export default {
-    components: {FormList},
-    mixins: [dictMixin],
-    data() {
-      return {
-        type: '',
-        disabled: false,
-        basicType: 'JB02XYFS',
-        formData: {
-          basicName: '',
-          trainLevelId: '',
-          trainLevelName: ''
-        }
-      };
-    },
-    computed: {
-      formConfig() {
-        return {
-          labelWidth: '100px',
-          config: [
-            {
-              label: ' 基本信息',
-              props: [
-                [
-                  {
-                    label: '选用编码',
-                    type: 'text',
-                    prop: 'basicCode',
-                    disabled: true,
-                    placeholder: '系统自动生成'
-                  },
-                  {
-                    label: '选用名称',
-                    type: 'text',
-                    prop: 'basicName',
-                    disable: this.disabled,
-                    placeholder: '请输入名称'
-                  },
-                  {
-                    label: '拼音码',
-                    type: 'text',
-                    prop: 'pinyinCode',
-                    disabled: true,
-                    placeholder: '系统自动生成'
-                  },
-                  {
-                    label: '五笔码',
-                    type: 'text',
-                    prop: 'fiveStrokeCode',
-                    disabled: true,
-                    placeholder: '系统自动生成'
-                  },
-                  {
-                    label: '创建人',
-                    type: 'text',
-                    prop: 'createBy',
-                    disabled: true,
-                    placeholder: '系统自动填充',
-                  },
-                  {
-                    label: '最后修改人',
-                    type: 'text',
-                    prop: 'updateTime',
-                    disabled: true,
-                    placeholder: '系统自动填充',
-                  },
-                  {
-                    label: '备注',
-                    type: 'textarea',
-                    prop: 'note',
-                    disableed: this.disabled,
-                    placeholder: '请输入备注内容'
-                  },
-                  {
-                    label: '状态',
-                    type: 'radio',
-                    prop: 'disable',
-                    disableed: this.disabled,
-                    options: this.mxOpenStatus2,
-                  }
-                ]
-              ]
-            }
-          ]
-        }
+import FormList from '@/components/form/FormList'
+import { dictMixin } from '../../../mixins/dictMixin'
+import { getDictionaryId, addDictionary, editDictionary } from './api'
+export default {
+  components: { FormList },
+  mixins: [dictMixin],
+  data() {
+    return {
+      type: '',
+      disabled: false,
+      basicType: 'JB02XYFS',
+      formData: {
+        basicName: '',
+        note: '',
+        basicCode: '',
+        pinyinCode: '',
+        fiveStrokeCode: '',
+        updateBy: '',
+        createBy: '',
+        disable: false,
+        id: ''
       }
-    },
-    watch: {
-      type() {
-        this.disabled === this.type === 'detail'
-      }
-    },
-    methods: {
-     save() {
-       let params = {
-         basicName: this.formData.basicName,
-         trainLevelId: '',
-         trainLevelName: ''
-       }
-       addDictionary(params).then(res => {
-         if (res.status) {
-           this.$message({message: '保存成功', type: 'success'})
-           this.$router.push({ path: '/teachingMaterial/basic-dict/course-dict'})
-         } else {
-           this.$message.error(res.msg)
-         }
-       }).catch()
-     },
-      getDictionaryById(id) {
-        console.log(id);
-        getDictionaryId(id).then((res) => {
-          this.formData = res.data;
-       })
-     },
-     cancel() {
-       this.$router.push({ path: '/teachingMaterial/basic-dict/course-dict'})
-     },
-     handleBtnClick(res) {
-        this[res] && this[res]()
-      },
-    },
-    //创建完成（可以访问当前this实例）
-    created() {
-      this.type = this.$route.query.type || 'add'
-      if (this.type !== 'add') {
-        this.getDictionaryById(this.$route.query.id)
-      }
-    },
-    //挂载完成（可以访问DOM元素）
-    mounted() {
-    },
-    beforeCreate() {}, //创建之前
-    beforeMount() {}, //挂载之前
-    beforeUpdate() {}, //更新之前
-    updated() {},
-    beforeDestroy() {}, //销毁之前
-    destroyed() {},
-    activated() {}, //如果页面有keep-alive缓存功能，这个函数会触发
     }
+  },
+  computed: {
+    formConfig() {
+      return {
+        labelWidth: '100px',
+        config: [
+          {
+            label: ' 基本信息',
+            props: [
+              [
+                {
+                  label: '选用编码',
+                  type: 'text',
+                  prop: 'basicCode',
+                  disabled: true,
+                  placeholder: '系统自动生成'
+                },
+                {
+                  label: '选用名称',
+                  type: 'text',
+                  prop: 'basicName',
+                  disable: this.disabled,
+                  placeholder: '请输入名称'
+                },
+                {
+                  label: '拼音码',
+                  type: 'text',
+                  prop: 'pinyinCode',
+                  disabled: true,
+                  placeholder: '系统自动生成'
+                },
+                {
+                  label: '五笔码',
+                  type: 'text',
+                  prop: 'fiveStrokeCode',
+                  disabled: true,
+                  placeholder: '系统自动生成'
+                },
+                {
+                  label: '创建人',
+                  type: 'text',
+                  prop: 'createBy',
+                  disabled: true,
+                  placeholder: '系统自动填充'
+                },
+                {
+                  label: '最后修改人',
+                  type: 'text',
+                  prop: 'updateBy',
+                  disabled: true,
+                  placeholder: '系统自动填充'
+                },
+                {
+                  label: '状态',
+                  type: 'radio',
+                  prop: 'disable',
+                  disabled: this.type === 'edit',
+                  options: this.mxOpenStatus2
+                }
+              ],
+              [
+                {
+                  label: '备注',
+                  type: 'textarea',
+                  prop: 'note',
+                  span: 12,
+                  disabled: this.disabled,
+                  placeholder: '请输入备注内容'
+                }
+              ]
+            ]
+          }
+        ]
+      }
+    }
+  },
+  watch: {
+    type() {}
+  },
+  methods: {
+    save() {
+      this.$refs.formlist.validFormList(valid => {
+        if (valid) this.saveForm()
+      })
+    },
+    saveForm() {
+      let params = {
+        basicName: this.formData.basicName,
+        basicType: 'JB02XYFS',
+        note: this.formData.note,
+        disable: this.formData.disable
+      }
+      if (this.type === 'add') {
+        addDictionary(params).then(res => {
+          if (res.status) {
+            this.$success('新增选用方式')
+            this.$router.go(-1)
+          }
+        })
+      } else if (this.type === 'edit') {
+        params.id = this.formData.id
+        editDictionary(params).then(res => {
+          if (res.status) {
+            this.$success('修改选用方式')
+            this.$router.go(-1)
+          }
+        })
+      }
+    },
+    getDictionaryById(id) {
+      getDictionaryId(id).then(res => {
+        if(res.status) {
+          this.formData = res.data
+        }
+      })
+    },
+    cancel() {
+      this.$router.go(-1)
+    },
+    handleBtnClick(res) {
+      this[res] && this[res]()
+    }
+  },
+  // 创建完成（可以访问当前this实例）
+  created() {
+    this.type = this.$route.query.type || 'add'
+    this.type !== 'add' && this.getDictionaryById(this.$route.query.id)
+  },
+  // 挂载完成（可以访问DOM元素）
+  mounted() {},
+  beforeCreate() {}, // 创建之前
+  beforeMount() {}, // 挂载之前
+  beforeUpdate() {}, // 更新之前
+  updated() {},
+  beforeDestroy() {}, // 销毁之前
+  destroyed() {},
+  activated() {} // 如果页面有keep-alive缓存功能，这个函数会触发
+}
 </script>
 <style lang='scss' scoped>
-
 </style>

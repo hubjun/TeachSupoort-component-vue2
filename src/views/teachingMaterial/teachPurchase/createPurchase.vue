@@ -159,18 +159,18 @@ export default {
             item.options = this.mxYearList
           })
         }
-        if (item.prop === 'chooseWayId') {
-          this.baseList('JB02JCLX').then(res => {
-            this.mxSelectWay = res
-            this.mxSelectWay.unshift({ label: '所有', value: '' })
-            item.options = this.mxSelectWay
-          })
-        }
         if (item.prop === 'materialTypeId') {
-          this.baseList('JB02XYFS').then(res => {
+          this.baseList('JB02JCLX').then(res => {
             this.mxTeachType = res
             this.mxTeachType.unshift({ label: '所有', value: '' })
-            item.options =  this.mxTeachType
+            item.options = this.mxTeachType
+          })
+        }
+        if (item.prop === 'chooseWayId') {
+          this.baseList('JB02XYFS').then(res => {
+            this.mxSelectWay = res
+            this.mxSelectWay.unshift({ label: '所有', value: '' })
+            item.options =  this.mxSelectWay
           })
         }
       }
