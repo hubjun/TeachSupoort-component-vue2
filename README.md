@@ -7,21 +7,21 @@
 |  ├─main.js						
 |  ├─router                         		//全局路由入口
 |  |   └index.js
-|  ├─mixins									//字典、枚举混入对象
+|  ├─mixins					//字典、枚举混入对象
 |  |   └dictMixin.js
-|  ├─components								//通用类组件库
+|  ├─components					//通用类组件库
 |  |     ├─tableGroup		
 |  |     |     └TablePagination.vue  		//table分页组件
-|  |     ├─table							//table类组件
-|  |     |   ├─EditTable.vue				//单一（详情类table）
-|  |     |   ├─index.vue					//通用类表格组件
+|  |     ├─table				//table类组件
+|  |     |   ├─EditTable.vue			//单一（详情类table）
+|  |     |   ├─index.vue			//通用类表格组件
 |  |     |   ├─tableOperate.vue
 |  |     |   ├─table_2.vue
 |  |     |   └table_3.vue
 |  |     ├─searchBar
-|  |     |     └searchBar.vue				//查询组件（表单列表、单一，多条件查询）
-|  |     ├─pop								//pop弹窗组件
-|  |     |  ├─AssetSelectTable.vue			//table数据选择组件（查询+表单）
+|  |     |     └searchBar.vue			//查询组件（表单列表、单一，多条件查询）
+|  |     ├─pop					//pop弹窗组件
+|  |     |  ├─AssetSelectTable.vue		//table数据选择组件（查询+表单）
 |  |     |  ├─ModifyPsw.vue
 |  |     |  └TeachSelectTable.vue
 |  |     ├─Menu
@@ -32,17 +32,17 @@
 |  |     |    ├─XHeader.vue
 |  |     |    └XTabbar.vue
 |  |     ├─form
-|  |     |  └FormList.vue					//
+|  |     |  └FormList.vue			//
 |  |     ├─comPower
 |  |     |    ├─comPower.vue
 |  |     |    └index.vue
 |  |     ├─common
 |  |     |   ├─BtnGroup.vue
 |  |     |   └upload.vue
-|  |     ├─button							//基础类组件
+|  |     ├─button				//基础类组件
 |  |     |   ├─resetBtn.vue
 |  |     |   └searchBtn.vue
-|  ├─views							 //主功能模块
+|  ├─views					//主功能模块
 |  |   ├─teachingMaterial
 |  |   |        ├─router.js
 |  |   |        ├─teachPutStorage
@@ -121,7 +121,7 @@
 |  |   ├─common.js
 |  |   ├─Global.js						//
 |  |   └index.js						//
-|  ├─assets								//项目资源文件
+|  ├─assets							//项目资源文件
 |  |   ├─logo.png
 |  |   ├─js
 |  |   | ├─dicts.js
@@ -135,14 +135,6 @@
 |  ├─api
 |  |  ├─common
 |  |  |   └demoServer.js
-├─public
-|   ├─favicon.ico
-|   ├─index.html
-|   ├─json
-|   |  ├─dev.config.json
-|   |  ├─menus.json
-|   |  ├─prod.config.json
-|   |  └test.config.json
 ```
 #### Usage
 
